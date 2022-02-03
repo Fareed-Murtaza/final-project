@@ -1,0 +1,18 @@
+.signin {
+    margin-inline: auto;
+    max-width: 600px;
+    margin-top: 10%;
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #aea4a4;
+}
+
+.form-signin {
+    padding: 50px 20px 30px 20px;
+    border: 2px solid #f3f3f3;
+    text-align: center;
+}
