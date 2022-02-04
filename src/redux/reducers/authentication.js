@@ -1,4 +1,4 @@
-import { SET_ERROR, SIGN_IN, SIGN_UP, START_LOADING, LOG_OUT } from '../actions/authentication/types';
+import { SET_AUTH_ERROR, SIGN_IN, SIGN_UP, START_AUTH_LOADING, LOG_OUT } from '../actions/authentication/types';
 
 const initialState = {
   loading: false,
@@ -17,10 +17,10 @@ const authReducer = (state = initialState, action) => {
     case LOG_OUT: {
       return {...state, currentUser: action.payload, loading: false};
     }
-    case START_LOADING: {
+    case START_AUTH_LOADING: {
       return {...state, loading: true};
     }
-    case SET_ERROR: {
+    case SET_AUTH_ERROR: {
       return {...state, error: action.error, loading: false};
     }
     default:

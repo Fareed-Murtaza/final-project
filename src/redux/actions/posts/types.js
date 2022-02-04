@@ -1,0 +1,8 @@
+export const START_POSTS_LOADING = 'START_POSTS_LOADING';
+export const STOP_POSTS_LOADING = 'STOP_POSTS_LOADING';
+export const SET_POSTS_ERROR = 'SET_ERROR';
+
+export const SET_POSTS = 'SET_POSTS';
+export const RESET_POSTS = 'RESET_POSTS';
+export const UPDATE_POST = 'UPDATE_POST';
+export const DELETE_POST = 'DELETE_POST';

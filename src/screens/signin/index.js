@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './index.css';
 import loadingGif from '../../assets/images/loading.gif';
@@ -14,11 +14,7 @@ const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if(currentUser) {
-      navigate('./');
-    }
-  }, [currentUser, navigate])
+  useEffect(() => currentUser? navigate('/'): '', [currentUser, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault();

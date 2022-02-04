@@ -1,116 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import './index.css';
+import logo from '../../assets/images/logo.png';
+import { userLogout } from '../../redux/actions/authentication';
 
 const Header = () => {
-  return (
-    <div>
-      
+  const { currentUser, error } = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => !currentUser ? navigate('/') : '', [currentUser])
+
+  const logoutHandler = () => dispatch(userLogout())
+
+  return <div className='header'>
+    <div className='h-container col-12'>
+      <div className='d-flex justify-content-between'>
+        <div className='logo'>
+          <img src={logo} alt='' width='100%' height='auto' />
+        </div>
+        <div className='d-flex h-menu'>
+          <Link className='h-menu-li' to='/'>All Posts</Link>
+          <Link className='h-menu-li' to='/'>My Posts</Link>
+          {!currentUser && <Link className='h-menu-li' to='/signin'>Sign In</Link>}
+          {currentUser && <a className='h-menu-li' onClick={logoutHandler}>Log Out</a>}
+        </div>
+      </div>
     </div>
-  );
-};
+  </div>
+}
 
 export default Header;
-
-// ========================================================
-const { useRef, useState, useEffect, createRef } = React
-
-
-/*--------------------
-Items
---------------------*/
-const items = [
-  {
-    name: "Posts",
-    href: "#"
-  },
-  {
-    name: "Design",
-    href: "#"
-  },
-  {
-    name: "Director",
-    href: "#"
-  },
-  {
-    name: "Experience",
-    href: "#"
-  },
-  {
-    name: "Interface",
-    href: "#"
-  }
-];
-
-
-/*--------------------
-Menu
---------------------*/
-const Menu = ({items}) => {
-  const $root = useRef()
-  const $indicator1 = useRef()
-  const $indicator2 = useRef()
-  const $items = useRef(items.map(createRef))
-  const [ active, setActive ] = useState(0)
-  
-  const animate = () => {
-    const menuOffset = $root.current.getBoundingClientRect()
-    const activeItem = $items.current[active].current
-    const { width, height, top, left } = activeItem.getBoundingClientRect()
-    
-    const settings = {
-      x: left - menuOffset.x,
-      y: top - menuOffset.y,
-      width: width,
-      height: height,
-      backgroundColor: '#f44336',
-      ease: 'elastic.out(.7, .7)',
-      duration: .8
-    }
-    
-    gsap.to($indicator1.current, {
-      ...settings,
-    })
-    
-    gsap.to($indicator2.current, {
-      ...settings,
-      duration: 1
-    })
-  }
-  
-  useEffect(() => {
-    animate()
-    window.addEventListener('resize', animate)
-    
-    return (() => {
-      window.removeEventListener('resize', animate)
-    })    
-  }, [active])
-  
-  return (
-    <div
-      ref={$root}
-      className="menu"
-    >
-      {items.map((item, index) => (
-        <a
-          key={item.name}
-          ref={$items.current[index]}
-          className={`item ${active === index ? 'active' : ''}`}
-          onMouseEnter={() => {
-            setActive(index)
-          }}
-          href={item.href}
-         >
-          {item.name}
-        </a>
-      ))}
-      <div
-        ref={$indicator1}
-        className="indicator"
-       />
-      <div
-        ref={$indicator2}
-        className="indicator"
-       />
-    </div>
-  )
-}

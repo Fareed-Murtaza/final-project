@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { ref, set, child, get } from "firebase/database";
 
-import { LOG_OUT, SET_ERROR, SIGN_IN, SIGN_UP, START_LOADING } from "./types";
+import { LOG_OUT, SET_AUTH_ERROR, SIGN_IN, SIGN_UP, START_AUTH_LOADING } from "./types";
 import { firebaseDatabase, firebaseAuth } from '../../../firebase';
 
 export const userSignup = (name, email, password) => {
@@ -46,7 +46,7 @@ export const userSignin = (email, password) => {
 export const userLogout = () => {
   return (dispatch) => {
     dispatch(startLoading());
-    signOut()
+    signOut(firebaseAuth)
       .then(() => dispatch(logoutSuccessful()))
       .catch(error => dispatch(generateError(error)))
   }
@@ -55,12 +55,12 @@ export const userLogout = () => {
 
 const startLoading = () => {
   return {
-    type: START_LOADING
+    type: START_AUTH_LOADING
   }
 }
 const generateError = (error) => {
   return {
-    type: SET_ERROR,
+    type: SET_AUTH_ERROR,
     error: error
   }
 }
