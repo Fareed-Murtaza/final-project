@@ -1,0 +1,43 @@
+.posts {
+    width: 100%;
+    height: auto;
+}
+
+.post {
+    display: flex;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fff;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 5px -1px #ceabab;
+    border-bottom: 1px solid #dedede;
+}
+
+.author {
+    text-align: center;
+    margin: 10px 20px 0 0;
+}
+
+.author-img {
+    padding-top: 15px !important;
+    overflow: hidden;
+    display: block;
+    padding: 2px;
+    padding-top: 2px;
+    border: 1px solid #dedede;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
+.post-detail {
+    color: #000;
+}
+
+.p-description {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dedede;
+    color: #323233;
+    word-wrap: break-word;
+}

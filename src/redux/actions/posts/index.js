@@ -40,3 +40,7 @@ const reset = () => {
     type: RESET_POSTS
   }
 }
+
+
+
+// ?userId=1
