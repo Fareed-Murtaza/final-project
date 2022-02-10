@@ -74,7 +74,7 @@ const ViewPost = () => {
               <i className='fa fa-comments'></i>
               <span className='count'>{post.comments?.length? post.comments.length: 0}</span> Comments
             </div>
-            {(currentUser || typeof post.comments !== 'undefined') && post.comments?.length !== 0 && <div className='comments-container'>
+            {(currentUser || (typeof post.comments !== 'undefined' && post.comments?.length !== 0)) && <div className='comments-container'>
               {currentUser && <AddComment comment={editComment} isEdited={() => setEditComment(null)} />}
               {typeof post.comments !== 'undefined' && post.comments?.length !== 0 &&
                 post.comments.map((e) => {
