@@ -1,28 +1,27 @@
 import {
-  SET_POSTS_ERROR,
-  START_POSTS_LOADING,
-  SET_POSTS,
-  STOP_POSTS_LOADING,
+  ADD_COMMENT,
   CREATE_POST,
-  GET_POST_BY_ID,
-  GET_MY_POSTS,
+  DELETE_COMMENT,
   DELETE_POST,
   GET_AUTHOR,
+  GET_MY_POSTS,
+  GET_POST_BY_ID,
   RESET_SINGLE_POST,
-  UPDATE_POST,
-  ADD_COMMENT,
+  SET_POSTS,
+  SET_POSTS_ERROR,
+  START_POSTS_LOADING,
+  STOP_POSTS_LOADING,
   UPDATE_COMMENT,
-  DELETE_COMMENT,
-} from "../actions/posts/types";
+  UPDATE_POST,
+} from '../actions/posts/types';
 
 const initialState = {
-  fetched: false,
   loading: false,
   posts: [],
   post: null,
   author: null,
   myPosts: [],
-  error: "",
+  error: '',
 };
 
 const postsReducer = (state = initialState, action) => {
@@ -51,7 +50,7 @@ const postsReducer = (state = initialState, action) => {
     case GET_POST_BY_ID: {
       return {
         ...state,
-        post: state.posts.filter((e) => e.id === +action.payload.id),
+        post: state.posts.filter((e) => e.id === +action.payload.id)[0],
         loading: false,
       };
     }
@@ -84,7 +83,7 @@ const postsReducer = (state = initialState, action) => {
           
           if(e.comments?.length) {
             newComments.push({
-              id: e.comments.length+1,
+              id: +(e.comments[e.comments.length-1].id)+1,
               comment: action.payload.comment,
               userId: action.payload.userId,
               userName: action.payload.userName

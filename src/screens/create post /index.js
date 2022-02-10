@@ -16,13 +16,13 @@ const CreatePost = () => {
   const titleChange = (event) => {
     setTitle(event.target.value);
   };
+
   const bodyChange = (event) => {
     setBody(event.target.value);
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
-
     dispatch(createPost(title, body, currentUser.uid))
     .then(res => navigate(`/`))
   };

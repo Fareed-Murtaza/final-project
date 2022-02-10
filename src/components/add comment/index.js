@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addComment, editComment } from "../../redux/actions/posts";
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import "./index.css";
+import { addComment, editComment } from '../../redux/actions/posts';
+import './index.css';
 
 const AddComment = props => {
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const [edit, setEditComment] = useState(null);
   const {post} = useSelector((state) => state.posts);
   const {currentUser} = useSelector(state => state.auth);
@@ -22,6 +23,7 @@ const AddComment = props => {
   const commentChangeHandler = (e) => {
     setComment(e.target.value);
   };
+
   const addCommentHandler = () => {
     if(edit != null) {
       dispatch(editComment(edit.postId, edit.commentId, comment));
@@ -29,27 +31,32 @@ const AddComment = props => {
       setComment('');
       props.isEdited();
     } else {
-      dispatch(addComment(post[0].id, comment, currentUser.uid, currentUser.name));
+      dispatch(addComment(post.id, comment, currentUser.uid, currentUser.name));
     }
   };
 
   return (
-    <div className="add-comment">
+    <div className='add-comment'>
       <input
-        type="text"
-        id="commentInput"
-        placeholder="Add Comment"
-        name="comment"
+        type='text'
+        id='commentInput'
+        placeholder='Add Comment'
+        name='comment'
         onChange={commentChangeHandler}
         value={comment}
-        className="comment-input"
+        className='comment-input'
         required
       />
-      <button className="btn btn-secondary" onClick={addCommentHandler}>
+      <button className='btn btn-secondary' onClick={addCommentHandler}>
         Send
       </button>
     </div>
   );
 };
+
+AddComment.propTypes = {
+  isEdited: PropTypes.func,
+  comment: PropTypes.any
+}
 
 export default AddComment;

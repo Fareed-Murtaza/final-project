@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import './index.css';
 import loadingGif from '../../assets/images/loading.gif';
 import { userSignup } from '../../redux/actions/authentication';
+
+import './index.css';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -29,9 +30,11 @@ const SignUp = () => {
   const nameChange = (e) => {
     setName(e.target.value)
   }
+
   const emailChange = (e) => {
     setEmail(e.target.value)
   }
+  
   const passwordChange = (e) => {
     setPassword(e.target.value)
   }

@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import "./index.css";
-import { getMyPosts } from "../../redux/actions/posts";
-import loadingGif from "../../assets/images/loading.gif";
-import noData from "../../assets/images/no-data.jpg";
-import Posts from "../../components/posts";
-import { useNavigate } from "react-router-dom";
+import { getMyPosts } from '../../redux/actions/posts';
+import loadingGif from '../../assets/images/loading.gif';
+import noData from '../../assets/images/no-data.jpg';
+import Posts from '../../components/posts';
+import { useNavigate } from 'react-router-dom';
+
+import './index.css';
 
 const MyPosts = () => {
   const { currentUser } = useSelector(state => state.auth)
@@ -24,22 +25,22 @@ const MyPosts = () => {
   }, [posts]);
 
   return (
-    <div className="home">
-      {loading && <img className="loading" src={loadingGif} alt="" />}
+    <div className='home'>
+      {loading && <img className='loading' src={loadingGif} alt='' />}
       {!loading &&
         (!myPosts?.length ? (
-          <div className="no-data">
-            <div className="nd-container">
-              <img src={noData} alt="" width="100%" height="auto" />
-              <h3 className="no-data-title">No Post Found</h3>
+          <div className='no-data'>
+            <div className='nd-container'>
+              <img src={noData} alt='' width='100%' height='auto' />
+              <h3 className='no-data-title'>No Post Found</h3>
             </div>
           </div>
         ) : (
-          <div className="post-container">
-            <div className="p-header">
-              <h1 className="p-heading">My Posts:</h1>
+          <div className='post-container'>
+            <div className='p-header'>
+              <h1 className='p-heading'>My Posts:</h1>
             </div>
-            <div className="posts">
+            <div className='posts'>
               <Posts posts={myPosts} />
             </div>
           </div>

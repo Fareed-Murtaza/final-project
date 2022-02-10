@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import CreatePost from "./screens/create post ";
-import EditPost from "./screens/edit post ";
-import Header from "./components/header";
-import Home from "./screens/home";
-import MyPosts from "./screens/myPosts";
-import Signin from "./screens/signin";
-import SignUp from "./screens/signup";
-import ViewPost from "./screens/view post";
+import CreatePost from './screens/create post ';
+import EditPost from './screens/edit post ';
+import Header from './components/header';
+import Home from './screens/home';
+import MyPosts from './screens/myPosts';
+import Signin from './screens/signin';
+import SignUp from './screens/signup';
+import ViewPost from './screens/view post';
 
 const App = () => {
   return <>

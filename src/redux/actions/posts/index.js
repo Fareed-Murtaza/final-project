@@ -1,29 +1,29 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { ref, child, get } from "firebase/database";
-import { firebaseDatabase } from "../../../firebase";
+import { child, get, ref } from 'firebase/database';
+import { firebaseDatabase } from '../../../firebase';
 
 import {
-  START_POSTS_LOADING,
-  SET_POSTS_ERROR,
-  SET_POSTS,
+  ADD_COMMENT,
   CREATE_POST,
-  GET_POST_BY_ID,
-  GET_MY_POSTS,
+  DELETE_COMMENT,
   DELETE_POST,
   GET_AUTHOR,
+  GET_MY_POSTS,
+  GET_POST_BY_ID,
+  SET_POSTS,
+  SET_POSTS_ERROR,
+  START_POSTS_LOADING,
   RESET_SINGLE_POST,
   UPDATE_POST,
-  ADD_COMMENT,
   UPDATE_COMMENT,
-  DELETE_COMMENT
-} from "./types";
+} from './types';
 
 export const fetchPosts = () => {
   return (dispatch) => {
     dispatch(startLoading());
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get(`${process.env.REACT_APP_URL}/posts`)
       .then(({ data }) => dispatch(fetchSuccessful(data)))
       .catch((error) => dispatch(generateError(error)));
   };
@@ -32,10 +32,10 @@ export const createPost = (title, body, userId) => {
   return (dispatch) => {
     dispatch(startLoading());
     return axios({
-      method: "post",
-      url: "https://jsonplaceholder.typicode.com/posts",
+      method: 'post',
+      url: `${process.env.REACT_APP_URL}/posts`,
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        'Content-type': 'application/json; charset=UTF-8',
       },
       body: JSON.stringify({
         title: title,
@@ -65,9 +65,8 @@ export const getPostAuthor = (userId) => {
     dispatch(startLoading());
     if (userId <= 10) {
       axios
-        .get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .get(`${process.env.REACT_APP_URL}/users/${userId}`)
         .then(({ data }) => dispatch(userFetched(data.name)))
-        .catch((error) => console.log(error))
         .catch((error) => dispatch(generateError(error)));
     } else {
       get(child(ref(firebaseDatabase), `users/${userId}`))
@@ -154,23 +153,3 @@ export const resetSinglePostData = () => {
     type: RESET_SINGLE_POST,
   };
 };
-
-// export const createPost = (title, body, userId) => {
-//   return (dispatch) => {
-//     dispatch(startLoading());
-//     return axios({
-//       method: "post",
-//       url: "https://jsonplaceholder.typicode.com/posts",
-//       headers: {
-//         "Content-type": "application/json; charset=UTF-8",
-//       },
-//       body: JSON.stringify({
-//         title: title,
-//         body: body,
-//         userId: userId,
-//       }),
-//     })
-//       .then(({data}) => dispatch(newPostSuccessful({id: data.id, title, body, userId})))
-//       .catch(error => dispatch(generateError(error)))
-//   };
-// };

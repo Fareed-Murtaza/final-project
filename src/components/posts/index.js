@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './index.css';
 import { deletePost } from '../../redux/actions/posts';
-import { Link } from 'react-router-dom';
+import './index.css';
 
 const Posts = ({ posts }) => {
   const { currentUser } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   const deletePostHandler = (id) => {
@@ -28,12 +29,14 @@ const Posts = ({ posts }) => {
                 <span className='count'>{e.comments?.length? e.comments.length: 0}</span> Comments
               </div>
               <div className='post-actions'>
-                {currentUser?.uid === e.userId && <a className='action-delete' href='#' onClick={() => deletePostHandler(e.id)}>
-                  <i className='fa fa-trash'></i>Delete
-                </a>}
-                {currentUser?.uid === e.userId && <Link className='action-edit' to={`/posts/edit/${e.id}`}>
-                  <i className='fa fa-pencil'></i>Edit
-                </Link>}
+                {currentUser?.uid === e.userId && <>
+                  <Link className='action-delete'  to='' onClick={() => deletePostHandler(e.id)}>
+                    <i className='fa fa-trash'></i>Delete
+                  </Link>
+                  <Link className='action-edit' to={`/posts/edit/${e.id}`}>
+                    <i className='fa fa-pencil'></i>Edit
+                  </Link>
+                </>}
                 <Link className='action-view' to={`/posts/${e.id}`}>
                   <i className='fa fa-eye'></i>View
                 </Link>

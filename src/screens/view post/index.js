@@ -3,30 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import {
-  getPostDetailById,
-  getPostAuthor,
-  deletePost,
-  resetSinglePostData,
   deleteComment,
+  deletePost,
+  getPostAuthor,
+  getPostDetailById,
+  resetSinglePostData,
 } from '../../redux/actions/posts';
+import AddComment from '../../components/add comment';
 import loadingGif from '../../assets/images/loading.gif';
 import userImg from '../../assets/images/user.png';
+
 import './index.css';
-import AddComment from '../../components/add comment';
 
 const ViewPost = () => {
   const [editComment, setEditComment] = useState(null)
   const { currentUser } = useSelector((state) => state.auth);
-  const { loading, post, author, posts } = useSelector((state) => state.posts);
+  const { author, loading, post, posts } = useSelector((state) => state.posts);
 
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => dispatch(getPostDetailById(params.id)), [posts]);
+  useEffect(() => dispatch(getPostDetailById(params.id)), [params.id, posts]);
   useEffect(() => {
-    if (post?.length) {
-      dispatch(getPostAuthor(post[0].userId));
+    if (post) {
+      dispatch(getPostAuthor(post.userId));
     }
   }, [post]);
 
@@ -37,14 +38,12 @@ const ViewPost = () => {
   };
 
   const editCommentHandler = (commentId, comment) => {
-    setEditComment({postId: post[0].id, commentId, comment})
+    setEditComment({postId: post.id, commentId, comment})
   }
+
   const deleteCommentHandler = (commentId) => {
-    dispatch(deleteComment(post[0].id, commentId));    
+    dispatch(deleteComment(post.id, commentId));    
   }
-  const editSuccessfull = () => [
-    setEditComment(null)
-  ]
 
   return (
     <>
@@ -52,33 +51,33 @@ const ViewPost = () => {
         <div className='view-post'>
           <div className='post-header'>
             <h2 className='m-0 p-0'>Post Detail</h2>
-            {currentUser?.uid === post[0].userId && (
+            {currentUser?.uid === post.userId && (
               <div className='post-actions'>
                 <button
                   className='btn btn-danger'
-                  onClick={() => deletePostHandler(post[0].id)}
+                  onClick={() => deletePostHandler(post.id)}
                 >
                   Delete
                 </button>
                 <button className='btn btn-primary ml-2 edit-post-btn'>
-                  <Link to={`/posts/edit/${post[0].id}`}>Edit</Link>
+                  <Link to={`/posts/edit/${post.id}`}>Edit</Link>
                 </button>
               </div>
             )}
           </div>
           <div className='vp-data'>
             <div className='post-detail'>
-              <h3 className='p-title mb-2'>{post[0].title}</h3>
-              <p className='p-description'>{post[0].body}</p>
+              <h3 className='p-title mb-2'>{post.title}</h3>
+              <p className='p-description'>{post.body}</p>
             </div>
             <div>
               <i className='fa fa-comments'></i>
-              <span className='count'>{post[0].comments?.length? post[0].comments.length: 0}</span> Comments
+              <span className='count'>{post.comments?.length? post.comments.length: 0}</span> Comments
             </div>
-            {(currentUser || typeof post[0].comments !== 'undefined') && post[0].comments?.length !== 0 && <div className='comments-container'>
-              {currentUser && <AddComment comment={editComment} isEdited={editSuccessfull} />}
-              {typeof post[0].comments !== 'undefined' && post[0].comments?.length !== 0 &&
-                post[0].comments.map((e) => {
+            {(currentUser || typeof post.comments !== 'undefined') && post.comments?.length !== 0 && <div className='comments-container'>
+              {currentUser && <AddComment comment={editComment} isEdited={() => setEditComment(null)} />}
+              {typeof post.comments !== 'undefined' && post.comments?.length !== 0 &&
+                post.comments.map((e) => {
                   return (
                     <div className='comment' key={e.id}>
                       <div className='comment-author-img'>
