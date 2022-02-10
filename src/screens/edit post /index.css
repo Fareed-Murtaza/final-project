@@ -1,0 +1,26 @@
+.new-post {
+  margin-inline: auto;
+  max-width: 600px;
+  margin-top: 10%;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  height: 200px;
+}
+
+.form-new-post {
+  padding: 50px 20px;
+  border: 2px solid #f3f3f3;
+  text-align: center;
+}
+
+.actions {
+  text-align: end;
+}

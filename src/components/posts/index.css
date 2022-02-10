@@ -37,7 +37,25 @@
 .p-description {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #dedede;
+    border-bottom: 2px solid #f3f3f3;
     color: #323233;
     word-wrap: break-word;
+}
+.comment-section {
+    display: flex;
+    justify-content: space-between;
+}
+.post-actions > a {
+    color: #4a4444;
+    text-decoration: none;
+    margin-inline: 20px;
+}
+.action-edit {
+    color: darkslategray !important;
+}
+.action-delete {
+    color: rgb(228, 81, 81) !important;
+}
+.action-view {
+    color: cadetblue !important;
 }

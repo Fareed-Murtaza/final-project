@@ -1,36 +1,49 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './index.css';
-import user from '../../assets/images/user.png';
+import { deletePost } from '../../redux/actions/posts';
+import { Link } from 'react-router-dom';
 
-const Posts = ({posts}) => {
-  console.log(posts)
-  return <div className='posts'>
-    {posts.map(e => <div className='post' key={e.id}>
-        <div className='author'>
-          <div className='author-img'>
-            <img
-              src={user}
-              className='avatar'
-              width='65'
-              height='65'
-              alt=''
-            />
+const Posts = ({ posts }) => {
+  const { currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const deletePostHandler = (id) => {
+    dispatch(deletePost(id));
+  };
+
+  return (
+    <div className='posts'>
+      {posts.map((e) => (
+        <div className='post' key={e.id}>
+          <div className='post-data'>
+            <div className='post-detail'>
+              <h3 className='p-title mb-2'>{e.title}</h3>
+              <p className='p-description'>{e.body}</p>
+            </div>
+            <div className='comment-section'>
+              <div>
+                <i className='fa fa-comments'></i>
+                <span className='count'>{e.comments?.length? e.comments.length: 0}</span> Comments
+              </div>
+              <div className='post-actions'>
+                {currentUser?.uid === e.userId && <a className='action-delete' href='#' onClick={() => deletePostHandler(e.id)}>
+                  <i className='fa fa-trash'></i>Delete
+                </a>}
+                {currentUser?.uid === e.userId && <Link className='action-edit' to={`/posts/edit/${e.id}`}>
+                  <i className='fa fa-pencil'></i>Edit
+                </Link>}
+                <Link className='action-view' to={`/posts/${e.id}`}>
+                  <i className='fa fa-eye'></i>View
+                </Link>
+              </div>
+            </div>
           </div>
-          {e.name && <span>{e.name}</span>}
         </div>
-        <div className='post-data'>
-          <div className='post-detail'>
-            <h3 className='p-title mb-2'>{e.title}</h3>
-            <p className='p-description'>{e.body}</p>
-          </div>
-          <div className='comment-section'>
-            <i className='fa fa-comments'></i>
-            <span className='count'>2</span> Comments
-          </div>
-        </div>
-      </div>)}
-  </div>
+      ))}
+    </div>
+  );
 };
 
 export default Posts;

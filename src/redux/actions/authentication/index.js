@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { ref, set, child, get } from "firebase/database";
 
+import { ref, set, child, get } from "firebase/database";
 import { LOG_OUT, SET_AUTH_ERROR, SIGN_IN, SIGN_UP, START_AUTH_LOADING } from "./types";
 import { firebaseDatabase, firebaseAuth } from '../../../firebase';
 

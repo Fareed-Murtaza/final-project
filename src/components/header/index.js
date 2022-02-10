@@ -7,7 +7,7 @@ import logo from '../../assets/images/logo.png';
 import { userLogout } from '../../redux/actions/authentication';
 
 const Header = () => {
-  const { currentUser, error } = useSelector(state => state.auth)
+  const { currentUser } = useSelector(state => state.auth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,14 +18,16 @@ const Header = () => {
   return <div className='header'>
     <div className='h-container col-12'>
       <div className='d-flex justify-content-between'>
-        <div className='logo'>
-          <img src={logo} alt='' width='100%' height='auto' />
-        </div>
+        <Link className='h-menu-li' to='/'>
+          <div className='logo'>
+            <img src={logo} alt='' width='100%' height='auto' />
+          </div>
+        </Link>
         <div className='d-flex h-menu'>
           <Link className='h-menu-li' to='/'>All Posts</Link>
-          <Link className='h-menu-li' to='/'>My Posts</Link>
+          {currentUser && <Link className='h-menu-li' to='/my'>My Posts</Link>}
           {!currentUser && <Link className='h-menu-li' to='/signin'>Sign In</Link>}
-          {currentUser && <a className='h-menu-li' onClick={logoutHandler}>Log Out</a>}
+          {currentUser && <a href='#' className='h-menu-li' onClick={logoutHandler}>Log Out</a>}
         </div>
       </div>
     </div>
