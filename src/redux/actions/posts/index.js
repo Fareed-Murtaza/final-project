@@ -1,8 +1,7 @@
 import axios from 'axios';
-
 import { child, get, ref } from 'firebase/database';
-import { firebaseDatabase } from '../../../firebase';
 
+import { firebaseDatabase } from '../../../firebase';
 import {
   ADD_COMMENT,
   CREATE_POST,
@@ -19,6 +18,7 @@ import {
   UPDATE_COMMENT,
 } from './types';
 
+
 export const fetchPosts = () => {
   return (dispatch) => {
     dispatch(startLoading());
@@ -28,6 +28,7 @@ export const fetchPosts = () => {
       .catch((error) => dispatch(generateError(error)));
   };
 };
+
 export const createPost = (title, body, userId) => {
   return (dispatch) => {
     dispatch(startLoading());
@@ -47,12 +48,14 @@ export const createPost = (title, body, userId) => {
       .catch((error) => dispatch(generateError(error)));
   };
 };
+
 export const editPost = (postId, title, body) => {
   return {
     type: UPDATE_POST,
     payload: { id: postId, title, body }
   }
 };
+
 export const getPostDetailById = (postId) => {
   return (dispatch) => {
     dispatch(startLoading());
@@ -60,6 +63,7 @@ export const getPostDetailById = (postId) => {
     dispatch(getPostById(postId));
   };
 };
+
 export const getPostAuthor = (userId) => {
   return (dispatch) => {
     dispatch(startLoading());
@@ -76,6 +80,7 @@ export const getPostAuthor = (userId) => {
     }
   };
 };
+
 export const addComment = (postId, comment, userId, userName) => {
   return {
     type: ADD_COMMENT,
@@ -84,6 +89,7 @@ export const addComment = (postId, comment, userId, userName) => {
     }
   }
 }
+
 export const editComment = (postId, commentId, comment) => {
   return {
     type: UPDATE_COMMENT,
@@ -92,6 +98,7 @@ export const editComment = (postId, commentId, comment) => {
     }
   }
 } 
+
 export const deleteComment = (postId, commentId) => {
   return {
     type: DELETE_COMMENT,
@@ -106,48 +113,56 @@ const startLoading = () => {
     type: START_POSTS_LOADING,
   };
 };
+
 const generateError = (error) => {
   return {
     type: SET_POSTS_ERROR,
     error: error,
   };
 };
+
 const fetchSuccessful = (posts) => {
   return {
     type: SET_POSTS,
     payload: posts,
   };
 };
+
 const newPostSuccessful = (newPost) => {
   return {
     type: CREATE_POST,
     payload: newPost,
   };
 };
+
 export const getMyPosts = (userId) => {
   return {
     type: GET_MY_POSTS,
     payload: {userId},
   };
 };
+
 export const deletePost = (id) => {
   return {
     type: DELETE_POST,
     payload: id,
   };
 };
+
 export const userFetched = (name) => {
   return {
     type: GET_AUTHOR,
     payload: { name },
   };
 };
+
 const getPostById = (id) => {
   return {
     type: GET_POST_BY_ID,
     payload: { id },
   };
 };
+
 export const resetSinglePostData = () => {
   return {
     type: RESET_SINGLE_POST,

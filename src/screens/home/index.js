@@ -9,6 +9,7 @@ import Posts from '../../components/posts';
 
 import './index.css';
 
+
 const Home = () => {
   const { currentUser } = useSelector((state) => state.auth);
   const { posts, loading } = useSelector((state) => state.posts);
@@ -24,12 +25,12 @@ const Home = () => {
 
   return (
     <div className='home'>
-      {loading && <img className='loading' src={loadingGif} alt='' />}
+      {loading && <img className='loading' src={loadingGif} alt='loading' />}
       {!loading &&
         (!posts?.length ? (
           <div className='no-data'>
             <div className='nd-container'>
-              <img src={noData} alt='' width='100%' height='auto' />
+              <img src={noData} alt='no data' width='100%' height='auto' />
               <h3 className='no-data-title'>No Post Found</h3>
             </div>
           </div>

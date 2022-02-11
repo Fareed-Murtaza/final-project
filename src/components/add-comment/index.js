@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addComment, editComment } from '../../redux/actions/posts';
+
 import './index.css';
+
 
 const AddComment = props => {
   const [comment, setComment] = useState('');

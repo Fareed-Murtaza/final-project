@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { createPost } from '../../redux/actions/posts';
+
 import './index.css';
+
 
 const CreatePost = () => {
   const [title, setTitle] = useState('HELLO THIS IS NEW POST TITLE.');

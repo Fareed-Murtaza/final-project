@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '../../assets/images/logo.png';
 import { userLogout } from '../../redux/actions/authentication';
+
 import './index.css';
+
 
 const Header = () => {
   const { currentUser } = useSelector(state => state.auth);
@@ -21,7 +23,7 @@ const Header = () => {
       <div className='d-flex justify-content-between'>
         <Link className='h-menu-li' to='/'>
           <div className='logo'>
-            <img src={logo} alt='' width='100%' height='auto' />
+            <img src={logo} alt='logo' width='100%' height='auto' />
           </div>
         </Link>
         <div className='d-flex h-menu'>

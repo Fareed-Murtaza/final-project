@@ -24,6 +24,7 @@ const initialState = {
   error: '',
 };
 
+
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_POSTS: {

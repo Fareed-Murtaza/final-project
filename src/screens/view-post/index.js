@@ -9,11 +9,12 @@ import {
   getPostDetailById,
   resetSinglePostData,
 } from '../../redux/actions/posts';
-import AddComment from '../../components/add comment';
+import AddComment from '../../components/add-comment';
 import loadingGif from '../../assets/images/loading.gif';
 import userImg from '../../assets/images/user.png';
 
 import './index.css';
+
 
 const ViewPost = () => {
   const [editComment, setEditComment] = useState(null)
@@ -86,7 +87,7 @@ const ViewPost = () => {
                           className='avatar'
                           width='50'
                           height='50'
-                          alt=''
+                          alt='user'
                         />
                       </div>
                       <div className='comment-detail'>
@@ -110,7 +111,7 @@ const ViewPost = () => {
                 <img
                   src='/static/media/user.24e47f1e1f68331fe7f2.png'
                   className='avatar'
-                  alt=''
+                  alt='author'
                   width='65'
                   height='65'
                 />
@@ -120,7 +121,7 @@ const ViewPost = () => {
         </div>
       )}
       {(loading || !post || !author) && (
-        <img className='loading' src={loadingGif} alt='' />
+        <img className='loading' src={loadingGif} alt='loading' />
       )}
     </>
   );

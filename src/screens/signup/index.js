@@ -7,6 +7,7 @@ import { userSignup } from '../../redux/actions/authentication';
 
 import './index.css';
 
+
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -89,7 +90,7 @@ const SignUp = () => {
       </Link>
     </form>}
 
-    {loading && <img src={loadingGif} alt='' />}
+    {loading && <img src={loadingGif} alt='loading' />}
   </div>
 };
 

@@ -4,7 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { editPost, getPostDetailById } from '../../redux/actions/posts';
 import loadingGif from '../../assets/images/loading.gif';
+
 import './index.css';
+
 
 const EditPost = () => {
   const [title, setTitle] = useState();
@@ -87,7 +89,7 @@ const EditPost = () => {
       )}
 
       {(loading || !post) && (
-        <img className='loading' src={loadingGif} alt='' />
+        <img className='loading' src={loadingGif} alt='loading' />
       )}
     </>
   );

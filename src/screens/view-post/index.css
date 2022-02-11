@@ -3,45 +3,55 @@
   max-width: 600px;
   margin-top: 10%;
 }
+
 input {
   width: 100%;
   margin-bottom: 10px;
 }
+
 textarea {
   width: 100%;
   margin-bottom: 10px;
   height: 200px;
 }
+
 .form-new-post {
   padding: 50px 20px;
   border: 2px solid #f3f3f3;
   text-align: center;
 }
+
 .actions {
   text-align: end;
 }
+
 .post-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
+
 .post-actions {
   display: flex;
 }
+
 .view-post {
   margin: 30px 50px;
 }
+
 .vp-data {
   margin-top: 20px;
   padding: 20px;
   border: 2px solid #f3f3f3;
   border-radius: 20px;
 }
+
 .comments-container {
   padding-block: 20px;
   border-block: 2px solid #f3f3f3;
   margin-block: 20px;
 }
+
 .comment {
   display: flex;
   margin-block: 10px;
@@ -49,10 +59,12 @@ textarea {
   padding: 15px 10px;
   border-radius: 5px;
 }
+
 .comment-detail {
   margin-left: 15px;
   width: 100%;
 }
+
 .comment-author-img {
   padding: 10px 0 0 4px;
   overflow: hidden;
@@ -62,45 +74,57 @@ textarea {
   height: 60px;
   width: 63px;
 }
+
 .comment-author {
   text-transform: capitalize;
 }
+
 .comment-text {
   margin: 0;
 }
+
 .author {
   justify-content: end;
   margin-inline: 0;
   text-align: end;
 }
+
 .author-details {
   margin-right: 15px;
   color: cadetblue;
 }
+
 .author-name {
   text-transform: capitalize;
 }
+
 .author-img {
   padding: 0 6px 0 0;
 }
+
 .edit-post-btn {
   margin-left: 10px;
 }
+
 .edit-post-btn > a {
   color: white;
   text-decoration: none;
 }
+
 .comment-actions {
   width: 50px;
   display: flex;
   justify-content: space-between;
 }
+
 .fa {
   cursor: pointer;
 }
+
 .fa-trash {
   color: rgb(228, 81, 81) !important;
 }
+
 .fa-edit {
   color: darkslategray !important;
 }

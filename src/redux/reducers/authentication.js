@@ -4,13 +4,14 @@ import {
   SIGN_UP,
   START_AUTH_LOADING,
   LOG_OUT,
-} from "../actions/authentication/types";
+} from '../actions/authentication/types';
 
 const initialState = {
   loading: false,
   currentUser: null,
-  error: "",
+  error: '',
 };
+
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './index.css';
 
+
 const MyPosts = () => {
   const { currentUser } = useSelector(state => state.auth)
   const { posts, loading, myPosts } = useSelector((state) => state.posts);
@@ -26,12 +27,12 @@ const MyPosts = () => {
 
   return (
     <div className='home'>
-      {loading && <img className='loading' src={loadingGif} alt='' />}
+      {loading && <img className='loading' src={loadingGif} alt='loading' />}
       {!loading &&
         (!myPosts?.length ? (
           <div className='no-data'>
             <div className='nd-container'>
-              <img src={noData} alt='' width='100%' height='auto' />
+              <img src={noData} alt='no data' width='100%' height='auto' />
               <h3 className='no-data-title'>No Post Found</h3>
             </div>
           </div>

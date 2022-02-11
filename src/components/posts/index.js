@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { deletePost } from '../../redux/actions/posts';
+
 import './index.css';
+
 
 const Posts = ({ posts }) => {
   const { currentUser } = useSelector((state) => state.auth);
